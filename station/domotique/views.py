@@ -1,0 +1,17 @@
+# -*- coding: utf-8 -*-
+import serial
+from time import sleep
+from cornice import Service
+import demjson
+
+Service.cors_origins= ('*',)
+
+hello = Service(name='hello', path='/', description="Simplest app")
+
+
+@hello.get()
+def get_info(request):
+   fo = open('domotique/data.txt','r+')
+   str = fo.read()
+   # Returns Hello in JSON
+   return demjson.decode(str)

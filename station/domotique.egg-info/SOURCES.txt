@@ -1,0 +1,11 @@
+README.rst
+setup.py
+domotique/__init__.py
+domotique/views.py
+domotique.egg-info/PKG-INFO
+domotique.egg-info/SOURCES.txt
+domotique.egg-info/dependency_links.txt
+domotique.egg-info/entry_points.txt
+domotique.egg-info/not-zip-safe
+domotique.egg-info/requires.txt
+domotique.egg-info/top_level.txt
