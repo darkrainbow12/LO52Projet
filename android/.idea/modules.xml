@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/DomotiqueKiller/DomotiqueKiller.iml" filepath="$PROJECT_DIR$/DomotiqueKiller/DomotiqueKiller.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DomotiqueKillerProject.iml" filepath="$PROJECT_DIR$/DomotiqueKillerProject.iml" />
+    </modules>
+  </component>
+</project>
+
