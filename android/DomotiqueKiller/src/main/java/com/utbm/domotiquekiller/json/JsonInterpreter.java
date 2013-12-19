@@ -1,9 +1,10 @@
-package com.utbm.domotiquekiller;
+package com.utbm.domotiquekiller.json;
 
-import android.os.Message;
 import android.util.JsonReader;
-import android.util.JsonToken;
 import android.util.Log;
+
+import com.utbm.domotiquekiller.entity.Room;
+import com.utbm.domotiquekiller.entity.Sensor;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -64,9 +65,9 @@ public  class JsonInterpreter {
         reader.beginObject();
         while (reader.hasNext()) {
 
-            List lastValues = null;
-            List lastMinutesMean = null;
-            List lastHoursMean = null;
+            ArrayList lastValues = null;
+            ArrayList lastMinutesMean = null;
+            ArrayList lastHoursMean = null;
 
             Sensor sensor = new Sensor();
             sensor.setPinValue(reader.nextName());
@@ -98,8 +99,8 @@ public  class JsonInterpreter {
 
 
 
-    private static List readIntArray(JsonReader reader) throws IOException {
-        List integers = new ArrayList();
+    private static ArrayList readIntArray(JsonReader reader) throws IOException {
+        ArrayList integers = new ArrayList();
 
         reader.beginArray();
         while (reader.hasNext()) {

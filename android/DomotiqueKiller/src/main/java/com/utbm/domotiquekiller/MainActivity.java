@@ -1,31 +1,29 @@
 package com.utbm.domotiquekiller;
 
 import android.app.Activity;
-import android.app.ActionBar;
-import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.os.Build;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 
-import java.util.ArrayList;
+import com.utbm.domotiquekiller.entity.Room;
+import com.utbm.domotiquekiller.json.JsonDownloader;
+
 import java.util.List;
 
 public class MainActivity extends Activity implements JsonDownloader.Callback{
 
 
     private ListView listRooms;
-
+    List<Room> rooms;
     @Override
-    public void onDataReceived(List<Room> rooms) {
-        listRooms.setAdapter(new ArrayAdapter<Room>(this, android.R.layout.simple_list_item_1,android.R.id.text1,rooms));
+    public void onDataReceived(List<Room> data) {
+        rooms=data;
+        listRooms.setAdapter(new ArrayAdapter<Room>(this, android.R.layout.simple_list_item_1, android.R.id.text1, data));
     }
 
     @Override
@@ -35,7 +33,14 @@ public class MainActivity extends Activity implements JsonDownloader.Callback{
         setContentView(R.layout.activity_main);
 
         listRooms = (ListView) findViewById(R.id.listRooms);
-
+        listRooms.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent roomIntent = new Intent(MainActivity.this,RoomActivity.class);
+                roomIntent.putExtra("room",rooms.get(i));
+                startActivity(roomIntent);
+            }
+        });
 
         JsonDownloader downloader = new JsonDownloader(MainActivity.this);
         downloader.execute();

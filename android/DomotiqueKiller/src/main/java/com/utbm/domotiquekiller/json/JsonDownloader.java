@@ -1,11 +1,10 @@
 
 
-package com.utbm.domotiquekiller;
+package com.utbm.domotiquekiller.json;
 
 import android.os.AsyncTask;
-import android.util.Log;
 
-import com.utbm.domotiquekiller.Room;
+import com.utbm.domotiquekiller.entity.Room;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -37,7 +36,7 @@ public class JsonDownloader extends AsyncTask<Void , Void, List<Room>> {
 
         InputStream input = getJsonFromURL(urlDisplay);
         try {
-            rooms=JsonInterpreter.readJsonStream(input);
+            rooms= JsonInterpreter.readJsonStream(input);
         } catch (IOException e) {
             e.printStackTrace();
         }
