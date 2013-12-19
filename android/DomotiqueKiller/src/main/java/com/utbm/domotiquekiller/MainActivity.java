@@ -11,28 +11,40 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.List;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements JsonDownloader.Callback{
+
 
     private ListView listRooms;
+
+
+    @Override
+    public void onDataReceived(List<Room> rooms) {
+        listRooms = (ListView) findViewById(R.id.listRooms);
+        listRooms.setAdapter(new ArrayAdapter<Room>(this, android.R.layout.simple_list_item_1,android.R.id.text1,rooms));
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        listRooms = (ListView) findViewById(R.id.listRooms);
+
         Button refresh = (Button) findViewById(R.id.refresh);
         refresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                JsonDownloader downloader = new JsonDownloader();
+                JsonDownloader downloader = new JsonDownloader(MainActivity.this);
                 downloader.execute();
             }
         });
+
     }
+
 
 
     @Override
@@ -54,4 +66,6 @@ public class MainActivity extends Activity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
 }

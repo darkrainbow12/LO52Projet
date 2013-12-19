@@ -18,27 +18,47 @@ import java.util.List;
  */
 public class JsonDownloader extends AsyncTask<Void , Void, List<Room>> {
     private static String url ="http://www.add-besancon.fr/test/jsonexample.txt";
+    List<Room> rooms;
 
+
+    public static interface Callback
+    {
+        public void onDataReceived(List<Room> data);
+    }
+    Callback callback;
+
+    public JsonDownloader(Callback cb){
+        this.callback=cb;
+    }
 
     @Override
     protected List<Room> doInBackground(Void... voids) {
         String urlDisplay = url;
-        List<Room> mIcon11;
-        mIcon11 = getJsonFromURL(urlDisplay);
-        return mIcon11;
+
+        InputStream input = getJsonFromURL(urlDisplay);
+        try {
+            rooms=JsonInterpreter.readJsonStream(input);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return rooms;
     }
 
+    @Override
+    public void onPostExecute(List<Room> data)
+    {
+        this.callback.onDataReceived(data);
+    }
 
-
-    public List<Room> getJsonFromURL(String src) {
+    public InputStream getJsonFromURL(String src) {
         try {
             URL url = new URL(src);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setDoInput(true);
             connection.connect();
             InputStream input = connection.getInputStream();
-            List<Room> rooms = JsonInterpreter.readJsonStream(input);
-            return rooms;
+
+            return input;
         } catch (IOException e) {
             e.printStackTrace();
             return null;
