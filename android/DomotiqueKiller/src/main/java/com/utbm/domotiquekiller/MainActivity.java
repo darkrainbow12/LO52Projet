@@ -15,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends Activity implements JsonDownloader.Callback{
@@ -22,26 +23,23 @@ public class MainActivity extends Activity implements JsonDownloader.Callback{
 
     private ListView listRooms;
 
-
     @Override
     public void onDataReceived(List<Room> rooms) {
-        listRooms = (ListView) findViewById(R.id.listRooms);
         listRooms.setAdapter(new ArrayAdapter<Room>(this, android.R.layout.simple_list_item_1,android.R.id.text1,rooms));
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button refresh = (Button) findViewById(R.id.refresh);
-        refresh.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                JsonDownloader downloader = new JsonDownloader(MainActivity.this);
-                downloader.execute();
-            }
-        });
+        listRooms = (ListView) findViewById(R.id.listRooms);
+
+
+        JsonDownloader downloader = new JsonDownloader(MainActivity.this);
+        downloader.execute();
+
 
     }
 
@@ -61,7 +59,9 @@ public class MainActivity extends Activity implements JsonDownloader.Callback{
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         switch (item.getItemId()) {
-            case R.id.action_settings:
+            case R.id.action_refresh:
+                JsonDownloader downloader = new JsonDownloader(MainActivity.this);
+                downloader.execute();
                 return true;
         }
         return super.onOptionsItemSelected(item);

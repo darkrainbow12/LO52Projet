@@ -11,8 +11,8 @@ public class Room {
     @Override
     public String toString() {
         return "Room{" +
-                "sensors=" + sensors +
-                ", roomName='" + roomName + '\'' +
+                "roomName='" + roomName + '\'' +
+                ", sensors=" + sensors +
                 '}';
     }
 

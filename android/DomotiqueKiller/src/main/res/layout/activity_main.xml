@@ -12,9 +12,4 @@
         android:id="@+id/listRooms"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/refresh" />
-    <Button
-        android:layout_height="50dp"
-        android:layout_width="100dp"
-        android:id="@+id/refresh"
-        android:text="@string/refresh" />
 </RelativeLayout>

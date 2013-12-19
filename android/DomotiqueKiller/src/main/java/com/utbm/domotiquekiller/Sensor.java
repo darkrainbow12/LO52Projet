@@ -26,7 +26,8 @@ public class Sensor {
     @Override
     public String toString() {
         return "Sensor{" +
-                "lastValues=" + lastValues +
+                "pinNumber="+pinValue+
+                ", lastValues=" + lastValues +
                 ", lastMinutesMean=" + lastMinutesMean +
                 ", lastHoursMean=" + lastHoursMean +
                 '}';
