@@ -12,6 +12,17 @@ public class Sensor {
     List lastMinutesMean = null;
     List lastHoursMean = null;
 
+
+    public String getPinValue() {
+        return pinValue;
+    }
+
+    public void setPinValue(String pinValue) {
+        this.pinValue = pinValue;
+    }
+
+    String pinValue;
+
     @Override
     public String toString() {
         return "Sensor{" +
