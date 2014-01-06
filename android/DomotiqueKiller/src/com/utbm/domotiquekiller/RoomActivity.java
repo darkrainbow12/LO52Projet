@@ -27,19 +27,19 @@ public class RoomActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
     	
-    	List<String> sensorsName = new ArrayList<String>();
-    	
     	super.onCreate(savedInstanceState);
-    	
-    	room = getIntent().getParcelableExtra("room");
-
         setContentView(R.layout.activity_room);
+        
+        room = getIntent().getParcelableExtra("room");
+        
         setTitle("Room : " + room.getRoomName());
+        //getActionBar().setDisplayHomeAsUpEnabled(true);
         
+        
+    	
+    	List<String> sensorsName = new ArrayList<String>();
+
         listSensors = (ListView) findViewById(R.id.listSensors);
-        
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-      
         sensors = room.getSensors();
         
         //Get only the names of the room for the firstList in screen

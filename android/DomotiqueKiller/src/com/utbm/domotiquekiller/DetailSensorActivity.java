@@ -1,10 +1,7 @@
 package com.utbm.domotiquekiller;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -27,6 +24,9 @@ public class DetailSensorActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
 
     	super.onCreate(savedInstanceState);
+    	setContentView(R.layout.activity_detail_sensor);
+    	//getActionBar().setDisplayHomeAsUpEnabled(true);
+    	
     	listSensors = (ListView) findViewById(R.id.listValues);
     	sensors = new ArrayList<Sensor>();
     	
