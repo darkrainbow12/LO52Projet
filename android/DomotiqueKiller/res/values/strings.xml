@@ -8,5 +8,9 @@
     <string name="refresh">refresh</string>
     <string name="action_refresh">rafraichir</string>
     <string name="title_activity_detail_sensor">DetailSensor</string>
+    <string name="title_values">Last Values :</string>
+    <string name="title_sensor">Nom du sensor :</string>
+    <string name="title_last_value_minutes">Last values minutes :</string>
+    <string name="title_last_value_hours">Last values hour : </string>
 
 </resources>

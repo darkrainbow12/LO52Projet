@@ -22,48 +22,26 @@ public class RoomActivity extends Activity {
     Room room;
     private ListView listSensors;
     List<Sensor> sensors;
-    
+    LazyAdapter adapter;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
     	
     	super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_room);
+        listSensors = (ListView) findViewById(R.id.listSensors);
         
         room = getIntent().getParcelableExtra("room");
+        
+        sensors = room.getSensors();
         
         setTitle("Room : " + room.getRoomName());
         //getActionBar().setDisplayHomeAsUpEnabled(true);
         
         
-    	
-    	List<String> sensorsName = new ArrayList<String>();
-
-        listSensors = (ListView) findViewById(R.id.listSensors);
-        sensors = room.getSensors();
-        
-        //Get only the names of the room for the firstList in screen
-        for (Sensor sensor : sensors) {
-			
-        	String tmp = sensor.getPinValue();
-        	sensorsName.add(tmp);
-        
-		}
-        
-        
-        listSensors.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, sensorsName));
-        
-        listSensors.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent sensorIntent = new Intent(RoomActivity.this,DetailSensorActivity.class);
-                
-                Sensor temp = sensors.get(i);
-                
-                sensorIntent.putExtra("sensor",temp);
-                startActivity(sensorIntent);
-            }
-        });
+        //listSensors.setAdapter(new ArrayAdapter<Sensor>(this, android.R.layout.simple_list_item_1, android.R.id.text1, sensors));
+        adapter=new LazyAdapter(this, sensors);
+        listSensors.setAdapter(adapter);
     }
 
 

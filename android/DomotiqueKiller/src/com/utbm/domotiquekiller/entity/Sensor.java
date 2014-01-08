@@ -47,7 +47,7 @@ public class Sensor implements Parcelable{
         this.lastValues = lastValues;
     }
 
-    public List getLastMinutesMean() {
+    public ArrayList getLastMinutesMean() {
         return lastMinutesMean;
     }
 
@@ -55,7 +55,7 @@ public class Sensor implements Parcelable{
         this.lastMinutesMean = lastMinutesMean;
     }
 
-    public List getLastHoursMean() {
+    public ArrayList getLastHoursMean() {
         return lastHoursMean;
     }
 
