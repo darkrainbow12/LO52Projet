@@ -30,7 +30,7 @@ public class MainActivity extends Activity implements JsonDownloader.Callback{
         //Get only the names of the room for the firstList in screen
         for (Room room : data) {
 			
-        	String tmp = room.getRoomName();
+        	String tmp = convertToName(room.getRoomName());
         	roomsName.add(tmp);
         
 		}
@@ -85,5 +85,18 @@ public class MainActivity extends Activity implements JsonDownloader.Callback{
         return super.onOptionsItemSelected(item);
     }
 
-
+	private String convertToName(String idRoom) {
+		
+		String[][] conversion = {{"1", "Cuisine"},{"2","Salon"},{"3", "Salle de bain"}, {"4", "Chambre 1"},{"5", "Chambre 2"}};
+		
+		for (int i = 0; i < 5; i++) {
+			
+			for (int j = 0; j < 1; j++) {
+		        if (conversion[i][j].equals(idRoom))
+		            return conversion[i][j+1];
+			}
+		}
+		
+		return null;
+	}
 }

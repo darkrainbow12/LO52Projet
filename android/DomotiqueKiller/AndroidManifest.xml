@@ -35,14 +35,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.utbm.domotiquekiller.MainActivity" />
         </activity>
-        <activity
-            android:name="com.utbm.domotiquekiller.DetailSensorActivity"
-            android:configChanges="orientation|screenSize"
-            android:parentActivityName="com.utbm.domotiquekiller.RoomActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.utbm.domotiquekiller.RoomActivity" />
-        </activity>
     </application>
 
 </manifest>

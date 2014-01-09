@@ -35,11 +35,13 @@ public class RoomActivity extends Activity {
         
         sensors = room.getSensors();
         
-        setTitle("Room : " + room.getRoomName());
-        //getActionBar().setDisplayHomeAsUpEnabled(true);
+        setTitle(convertToName(room.getRoomName()));
+        
+        //Enable navigation back to parent activity
+        getActionBar().setDisplayHomeAsUpEnabled(true);
         
         
-        //listSensors.setAdapter(new ArrayAdapter<Sensor>(this, android.R.layout.simple_list_item_1, android.R.id.text1, sensors));
+        //Custom Adapter for the list of sensor
         adapter=new LazyAdapter(this, sensors);
         listSensors.setAdapter(adapter);
     }
@@ -67,5 +69,20 @@ public class RoomActivity extends Activity {
        
         return super.onOptionsItemSelected(item);
     }
+    
+	private String convertToName(String idRoom) {
+		
+		String[][] conversion = {{"1", "Cuisine"},{"2","Salon"},{"3", "Salle de bain"}, {"4", "Chambre 1"},{"5", "Chambre 2"}};
+		
+		for (int i = 0; i < 5; i++) {
+			
+			for (int j = 0; j < 1; j++) {
+		        if (conversion[i][j].equals(idRoom))
+		            return conversion[i][j+1];
+			}
+		}
+		
+		return null;
+	}
     
 }

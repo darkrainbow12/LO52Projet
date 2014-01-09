@@ -43,10 +43,10 @@ public class LazyAdapter extends BaseAdapter {
         sensor = sensors.get(position);
  
         //Setting all values in listview
-        title.setText(sensor.getPinValue());
-        actual.setText(sensor.getLastValues().get(0).toString());
-        minute.setText(sensor.getLastMinutesMean().get(0).toString());
-        //hour.setText(sensor.getLastHoursMean().get(0).toString());
+        title.setText("Nom : " + convertToName(sensor.getPinValue()));
+        actual.setText("Dernière valeur : " + sensor.getLastValues().get(0).toString());
+        minute.setText("Dernière moyenne minute : " + sensor.getLastMinutesMean().get(0).toString());
+        //hour.setText("Dernière moyenne heure  : " + sensor.getLastHoursMean().get(0).toString());
       
         return vi;
     }
@@ -70,5 +70,20 @@ public class LazyAdapter extends BaseAdapter {
 	public long getItemId(int position) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+	
+	private String convertToName(String idSensor) {
+		
+		String[][] conversion = {{"14", "Température"},{"15","Luminosité"},{"16", "Humidité"}, {"17", "Pression"},{"18", "Champ magnétique"}};
+		
+		for (int i = 0; i < 5; i++) {
+			
+			for (int j = 0; j < 1; j++) {
+		        if (conversion[i][j].equals(idSensor))
+		            return conversion[i][j+1];
+			}
+		}
+		
+		return null;
 	}
 }
