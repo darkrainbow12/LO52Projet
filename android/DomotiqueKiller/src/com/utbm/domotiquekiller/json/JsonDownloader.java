@@ -1,5 +1,4 @@
 
-
 package com.utbm.domotiquekiller.json;
 
 import android.os.AsyncTask;
@@ -16,7 +15,7 @@ import java.util.List;
  * Created by Matt on 21/07/13.
  */
 public class JsonDownloader extends AsyncTask<Void , Void, List<Room>> {
-    private static String url ="http://www.add-besancon.fr/test/jsonexample.txt";
+    private static String url ="192.168.2.11";
     List<Room> rooms;
 
 
