@@ -5,7 +5,7 @@ int pinA3 = A3;
 int pinA4 = A4;
 int pinA5 = A5;
 
-int arduinoId = 77;
+int arduinoId = 1;
 // variables:
 int sensorValue = 0;         // the sensor value
 int sensorMin = 1023;        // minimum sensor value
@@ -47,8 +47,8 @@ int calibrate(int sensorValue){
   if (sensorValue < sensorMin) {
     sensorMin = sensorValue;
   }
-  sensorValue = map(sensorValue, sensorMin, sensorMax, 0, 255);
-  sensorValue = constrain(sensorValue, 0, 255);
+  sensorValue = map(sensorValue, sensorMin, sensorMax, 0, 100);
+  sensorValue = constrain(sensorValue, 0, 100);
   return sensorValue;
 }
 

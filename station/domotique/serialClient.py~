@@ -60,6 +60,7 @@ while True :
          sensors[pinNum] = sensor
       timeStamp = timeStamp+1
       room[arduino] = sensors
+      print (timeStamp)
       if timeStamp%240 == 0 : 
          with open('data.txt','w') as outfile : 
             outfile.write(demjson.encode(room))

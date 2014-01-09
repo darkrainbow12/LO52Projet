@@ -5,6 +5,7 @@ from collections import deque
 import demjson
 import numpy
 import pickle
+import copy
 
 
 
@@ -24,12 +25,22 @@ while True :
       value= ord(ser.read())
 
       try :
+	 sensors = room[arduino]
          sensor = sensors[pinNum]
          meanMinutesQueue = sensor['lastMinutesMean']
          meanHoursQueue = sensor['lastHoursMean']
          valueQueue=sensor['lastValues']     
          valueQueue.appendleft(value)
             
+	 if len(sensor['lastValues'])>0 and len(sensor['lastValues'])<110:
+            meanMinute=0
+	    tempValues=copy.deepcopy(valueQueue)
+	    for i in range (len(sensor['lastValues'])) :
+               meanMinute+=tempValues.pop()
+            meanMinute=meanMinute/(len(sensor['lastValues']))
+	    if len(meanMinutesQueue)>0:
+               meanMinutesQueue.popleft()
+            meanMinutesQueue.appendleft(meanMinute)   
          if len(sensor['lastValues']) == 120 :
             meanMinute=0
             for i in range (59) :
@@ -38,6 +49,15 @@ while True :
             valueQueue.appendleft(value)
             meanMinutesQueue.appendleft(meanMinute)           
 
+         if len(meanMinutesQueue)>0 and len(meanMinutesQueue)<110:
+            meanHour=0
+	    meanMinutesQueueTemp = copy.deepcopy(meanMinutesQueue)
+            for i in range (len(meanMinutesQueueTemp)) :
+               meanHour+=meanMinutesQueueTemp.pop()
+            meanHour=meanHour/(len(meanMinutesQueue)+1)
+	    if len(meanHoursQueue)>0:
+	       meanHoursQueue.popleft()
+            meanHoursQueue.appendleft(meanHour)
          if len(meanMinutesQueue)==120 : 
             meanHour=0
             for i in range (59) :
