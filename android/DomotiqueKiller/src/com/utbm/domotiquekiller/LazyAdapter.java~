@@ -37,6 +37,7 @@ public class LazyAdapter extends BaseAdapter {
         TextView actual = (TextView)vi.findViewById(R.id.actual); 
         TextView minute = (TextView)vi.findViewById(R.id.minute); 
         TextView hour = (TextView)vi.findViewById(R.id.hour);
+        //ImageView thumb_image=(ImageView)vi.findViewById(R.id.list_image); // thumb image
  
         Sensor sensor = new Sensor();
         sensor = sensors.get(position);
